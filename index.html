@@ -5,13 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f2ece3">
   <meta name="description" content="Invitación a la boda de Walter y Marisol — 18 de diciembre de 2026.">
-  <title>Walter & Marisol — 18.12.2026</title>
+  <link rel="canonical" href="https://boda-marisol-walter.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Boda de Walter y Marisol">
+  <meta property="og:url" content="https://boda-marisol-walter.netlify.app/">
+  <meta property="og:title" content="Walter &amp; Marisol — Nuestra boda">
+  <meta property="og:description" content="Te invitamos a compartir con nosotros este momento tan especial. 18 de diciembre de 2026.">
+  <meta property="og:image" content="https://boda-marisol-walter.netlify.app/assets/whatsapp-preview.jpg">
+  <meta property="og:image:secure_url" content="https://boda-marisol-walter.netlify.app/assets/whatsapp-preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Nuestra boda: Walter y Marisol, 18 de diciembre de 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Walter &amp; Marisol — Nuestra boda">
+  <meta name="twitter:description" content="Te invitamos a compartir con nosotros este momento tan especial. 18 de diciembre de 2026.">
+  <meta name="twitter:image" content="https://boda-marisol-walter.netlify.app/assets/whatsapp-preview.jpg">
+  <title>Walter &amp; Marisol — 18.12.2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=intro-20260927-3">
 </head>
-<body>
+<body class="intro-open">
+  <div class="invitation-intro" id="invitationIntro" role="dialog" aria-modal="true" aria-label="Elegir cómo ingresar a la invitación">
+    <div class="invitation-intro__panel">
+      <img src="assets/intro-bienvenida.png?v=intro-20260927-1" alt="Bienvenidos a la invitación de Walter y Marisol">
+      <button class="invitation-intro__choice invitation-intro__choice--music" id="enterWithMusic" type="button" aria-label="Entrar con música"></button>
+      <button class="invitation-intro__choice invitation-intro__choice--silent" id="enterWithoutMusic" type="button" aria-label="Entrar sin música"></button>
+    </div>
+  </div>
+
   <a class="skip-link" href="#contenido">Ir al contenido</a>
 
   <main id="contenido" class="invitation">
@@ -25,14 +50,10 @@
       <p class="guest-count"><span>Tenés&nbsp;</span><strong id="cantidad-lugares" aria-live="polite"></strong><span>&nbsp;lugares reservados</span></p>
     </section>
 
-    <section class="art-section" aria-label="Versículo elegido por los novios">
-      <img src="assets/sections/03-versiculo.png" alt="Todo lo hizo hermoso en su tiempo. Eclesiastés 3:11. Tiempo de agradecer, bendecir, compartir y celebrar">
-    </section>
-
     <section class="art-section countdown-art" aria-label="Cuenta regresiva para la boda">
       <img src="assets/sections/04-cuenta-regresiva.png" alt="Cuenta regresiva">
       <div class="countdown-values" role="timer" aria-label="Tiempo restante">
-        <strong id="days">000</strong>
+        <strong id="days"></strong>
         <strong id="hours">00</strong>
         <strong id="minutes">00</strong>
         <strong id="seconds">00</strong>
@@ -42,6 +63,10 @@
     <section class="art-section date-art" aria-label="Fecha y horario">
       <img src="assets/sections/05-fecha.png" alt="Viernes 18 de diciembre de 2026 a las 19:30. Ceremonia y celebración">
       <button class="hotspot date-hotspot" id="calendarButton" type="button" aria-label="Agregar la boda al calendario"></button>
+    </section>
+
+    <section class="art-section schedule-art" aria-label="Cronograma del evento">
+      <img src="assets/sections/05b-cronograma.png?v=cronograma-20260927-1" alt="Cronograma: recepción a las 19:30, ceremonia a las 20:00, cóctel a las 20:30, entrada al salón a las 21:30 y fin de fiesta a las 03:00">
     </section>
 
     <section class="art-section location-art" aria-label="Ubicación de la celebración">
@@ -59,7 +84,12 @@
     </section>
 
     <section class="art-section music-art" aria-label="Música">
-      <img src="assets/sections/11-musica.png" alt="Dale play a nuestra historia">
+      <img class="music-background" src="assets/01-fondo-tocadiscos.png?v=musica-20260927-15" alt="Dale play a nuestra historia en un tocadiscos clásico">
+      <div class="music-vinyl-position" aria-hidden="true">
+        <img class="music-vinyl" src="assets/02-vinilo-WM-transparente-centrado.png?v=musica-20260927-15" alt="">
+      </div>
+      <img class="music-spindle" src="assets/music-spindle.png?v=musica-20260927-15" alt="" aria-hidden="true">
+      <img class="music-tonearm" src="assets/03-brazo-aguja-transparente.png?v=musica-20260927-15" alt="" aria-hidden="true">
       <button class="hotspot music-hotspot" id="musicButton" type="button" aria-pressed="false" aria-label="Reproducir nuestra canción"></button>
       <p id="musicStatus" class="sr-status" aria-live="polite"></p>
       <audio id="weddingAudio" preload="metadata" loop><source src="assets/nuestra-cancion.mp3" type="audio/mpeg"></audio>
@@ -77,8 +107,25 @@
       <img src="assets/couple-kiss.png" alt="Walter y Marisol se besan junto a la fuente" loading="lazy">
     </section>
 
+    <section class="art-section closing-verse" aria-label="Versículo elegido por los novios">
+      <img src="assets/sections/03-versiculo-cierre-azul.png?v=cierre-20260927-2" alt="Todo lo hizo hermoso en su tiempo. Eclesiastés 3:11">
+    </section>
+
+    <div class="closing-block">
+      <section class="closing-photo" aria-label="Walter y Marisol juntos">
+        <img src="assets/couple-closing.jpeg?v=cierre-20260927-1" alt="Walter y Marisol juntos durante su viaje" loading="lazy">
+      </section>
+
+      <section class="closing-message" aria-label="Mensaje de Walter y Marisol">
+        <p class="closing-message__lead">Es tiempo de agradecer,<br>bendecir, compartir y celebrar.</p>
+        <span class="closing-message__ornament" aria-hidden="true"></span>
+        <p>Reconocer el amor, recibirlo con gratitud y bendecirlo con paz y alegría es la certeza de este paso. No imaginamos darlo sin la compañía, las risas y los abrazos de quienes más queremos.</p>
+        <p class="closing-message__final">¡Queremos vivirlo y<br>compartirlo con ustedes!</p>
+      </section>
+    </div>
+
     <section class="art-section rsvp-art" aria-label="Confirmación de asistencia">
-      <img src="assets/sections/13-rsvp.png" alt="Confirmación de asistencia antes del primero de noviembre">
+      <img src="assets/sections/13-rsvp-sin-linea-v2.png?v=rsvp-20260927-4" alt="Confirmación de asistencia antes del primero de noviembre">
       <a class="hotspot rsvp-hotspot" id="boton-confirmar" href="https://bloomdate-rsvp.netlify.app" target="_blank" rel="noopener" aria-label="Confirmar asistencia"></a>
     </section>
 
@@ -87,15 +134,15 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.6 4.2 13C-.7 8.3 6.4 1.1 11 5.6l1 1 1-1c4.6-4.5 11.7 2.7 6.8 7.4L12 20.6Z"/></svg>
       </span> por <strong>Bloomdate</strong></p>
       <div class="footer-icons" aria-label="Canales de Bloomdate">
-        <span role="img" aria-label="WhatsApp">
+        <a href="https://wa.me/541140436324" target="_blank" rel="noopener" aria-label="Contactar a Bloomdate por WhatsApp">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.4h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.2-1.3-6.2-3.5-8.4Zm-8.4 18.2c-1.8 0-3.6-.5-5.1-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.1-1.8-.9-2.1-1-.3-.1-.5-.1-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-1-2.4c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.2 3.1 1.3 3.3.2.2 2.3 3.5 5.6 4.9.8.3 1.4.5 1.9.6.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.2-.5-.3-.8-.4Z"/></svg>
-        </span>
-        <span role="img" aria-label="Instagram">
+        </a>
+        <a href="https://www.instagram.com/bloomdate.invitaciones/" target="_blank" rel="noopener" aria-label="Visitar Bloomdate en Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.3"/><circle class="fill-dot" cx="17.6" cy="6.5" r="1.15"/></svg>
-        </span>
-        <span role="img" aria-label="Sitio web">
+        </a>
+        <a href="https://bloomdate-site.netlify.app/" target="_blank" rel="noopener" aria-label="Visitar el sitio web de Bloomdate">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M2.8 12h18.4M12 2.5c2.4 2.6 3.7 5.8 3.7 9.5S14.4 18.9 12 21.5M12 2.5C9.6 5.1 8.3 8.3 8.3 12s1.3 6.9 3.7 9.5"/></svg>
-        </span>
+        </a>
       </div>
       <p>Todos los derechos reservados</p>
     </footer>
@@ -128,7 +175,7 @@
     <span class="audio-toggle__note" aria-hidden="true">♫</span>
     <span class="audio-toggle__ring" aria-hidden="true"></span>
   </button>
-  <script src="script.js"></script>
+  <script src="script.js?v=intro-20260927-3"></script>
   <script src="assets/invitation-personalization.js"></script>
 </body>
 </html>

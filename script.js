@@ -7,6 +7,18 @@
   let lastFocused = null;
   let lockedScrollY = 0;
 
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+  function scrollInstantly(top) {
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, top);
+    root.style.scrollBehavior = previousBehavior;
+  }
+
+  scrollInstantly(0);
+
   function updateCountdown() {
     const distance = Math.max(0, weddingDate.getTime() - Date.now());
     const values = {
@@ -17,7 +29,7 @@
     };
     Object.entries(values).forEach(([id, value]) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = String(value).padStart(id === "days" ? 3 : 2, "0");
+      if (el) el.textContent = id === "days" ? String(value) : String(value).padStart(2, "0");
     });
   }
   updateCountdown();
@@ -52,7 +64,7 @@
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.width = "";
-    window.scrollTo(0, lockedScrollY);
+    scrollInstantly(lockedScrollY);
   }
 
   function openModal(modal) {
@@ -193,11 +205,15 @@
   const musicButton = document.getElementById("musicButton");
   const audioToggle = document.getElementById("audioToggle");
   const musicStatus = document.getElementById("musicStatus");
+  const invitationIntro = document.getElementById("invitationIntro");
+  const enterWithMusic = document.getElementById("enterWithMusic");
+  const enterWithoutMusic = document.getElementById("enterWithoutMusic");
 
   function setMusicState(isPlaying) {
     musicButton.setAttribute("aria-pressed", String(isPlaying));
     audioToggle.setAttribute("aria-pressed", String(isPlaying));
     audioToggle.setAttribute("aria-label", isPlaying ? "Apagar música" : "Encender música");
+    musicButton.setAttribute("aria-label", isPlaying ? "Pausar nuestra canción" : "Reproducir nuestra canción");
   }
 
   async function toggleMusic() {
@@ -215,6 +231,30 @@
       showToast("No pudimos iniciar la música");
     }
   }
+
+  async function enterInvitation(withMusic) {
+    if (withMusic) {
+      try {
+        await audio.play();
+        setMusicState(true);
+        musicStatus.textContent = "";
+      } catch (_error) {
+        setMusicState(false);
+        showToast("Podés encender la música desde el botón inferior");
+      }
+    } else {
+      audio.pause();
+      setMusicState(false);
+    }
+
+    document.body.classList.remove("intro-open");
+    invitationIntro.classList.add("is-leaving");
+    scrollInstantly(0);
+    window.setTimeout(() => { invitationIntro.hidden = true; }, reducedMotion ? 0 : 560);
+  }
+
+  enterWithMusic.addEventListener("click", () => enterInvitation(true));
+  enterWithoutMusic.addEventListener("click", () => enterInvitation(false));
   musicButton.addEventListener("click", toggleMusic);
   audioToggle.addEventListener("click", toggleMusic);
   audio.addEventListener("play", () => setMusicState(true));
