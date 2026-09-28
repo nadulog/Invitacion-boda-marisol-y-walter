@@ -75,7 +75,7 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 .hotspot:focus-visible { outline: 3px solid #806038; outline-offset: 2px; background: rgba(255,255,255,.08); }
 
 .guest-name { position: absolute; z-index: 2; top: 35%; left: 8%; width: 84%; margin: 0; text-align: center; font-size: clamp(2.4rem, 11vw, 4.4rem); line-height: .96; font-weight: 400; }
-.guest-count { position: absolute; z-index: 2; top: 66.1%; left: 39%; width: 22%; margin: 0; text-align: center; font-size: clamp(1.7rem, 7vw, 2.7rem); line-height: 1; }
+.guest-count { position: absolute; z-index: 2; top: 66.1%; left: 31%; width: 10%; margin: 0; text-align: center; font-size: clamp(1.7rem, 7vw, 2.7rem); line-height: 1; }
 .guest-count span { position: absolute; overflow: hidden; clip: rect(0 0 0 0); width: 1px; height: 1px; white-space: nowrap; }
 .guest-count strong { font-weight: 400; }
 .countdown-values { position: absolute; z-index: 2; top: 45.55%; left: 5.25%; width: 89.5%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.2%; perspective: 700px; }
