@@ -125,6 +125,7 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 
 .date-hotspot { left: 22%; top: 80.1%; width: 56%; height: 6.7%; }
 .location-hotspot { left: 22%; top: 83.2%; width: 56%; height: 6.4%; }
+.dress-art { overflow: hidden; }
 .gift-hotspot { left: 37%; top: 49.3%; width: 57.5%; height: 7%; }
 .music-hotspot {
   left: 12%;
@@ -196,26 +197,28 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 
 .photo-gallery { position: relative; background: #eee6db; }
 .photo-gallery::before { content: "Nuestra historia"; display: block; padding: 75px 20px 42px; text-align: center; color: var(--ink); font: 400 clamp(2rem, 9vw, 3.4rem)/1 "Cormorant Garamond", Georgia, serif; letter-spacing: .12em; text-transform: uppercase; }
-.photo-gallery img {
+.photo-frame {
+  position: relative;
   width: calc(100% - clamp(48px, 12vw, 76px));
-  max-height: 780px;
-  margin-inline: auto;
-  padding: 4px;
-  border: 1px solid rgba(163, 125, 80, .82);
-  outline: 1px solid rgba(163, 125, 80, .28);
-  outline-offset: 4px;
-  background: #f5efe6;
-  box-shadow: 0 14px 30px rgba(61, 45, 31, .11);
-  object-fit: cover;
-  filter: grayscale(1);
+  margin: 0 auto;
+  padding: clamp(5px, 1.4vw, 7px);
+  border: 2px solid rgba(83,105,135,.82);
+  background: transparent;
+  box-shadow: 0 14px 30px rgba(61,45,31,.11);
 }
-.photo-gallery img:first-of-type { object-position: center 55%; }
-.photo-gallery img + img {
-  margin-top: clamp(42px, 10vw, 64px);
-  -webkit-mask-image: none;
-  mask-image: none;
+.photo-frame + .photo-frame { margin-top: clamp(42px, 10vw, 64px); }
+.photo-frame:last-child { margin-bottom: clamp(70px, 14vw, 100px); }
+.photo-frame__image { display: block; width: 100%; max-height: 780px; object-fit: cover; filter: grayscale(1); }
+.photo-frame:first-of-type .photo-frame__image { object-position: center 55%; }
+.photo-frame__pearl {
+  position: absolute;
+  z-index: 2;
+  width: clamp(27px, 7.2vw, 38px);
+  height: auto;
+  pointer-events: none;
 }
-.photo-gallery img:last-child { margin-bottom: clamp(70px, 14vw, 100px); }
+.photo-frame__pearl--left { left: 0; top: 27%; transform: translate(-50%, -50%); }
+.photo-frame__pearl--right { right: 0; top: 73%; transform: translate(50%, -50%); }
 
 .closing-block {
   background-color: #f1e9df;
@@ -387,7 +390,7 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 @media (max-width: 590px) {
   .invitation { box-shadow: none; }
   .photo-gallery::before { padding-top: 60px; }
-  .photo-gallery img { max-height: none; }
+  .photo-frame__image { max-height: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
