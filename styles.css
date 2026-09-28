@@ -78,13 +78,76 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 .guest-count { position: absolute; z-index: 2; top: 66.1%; left: 39%; width: 22%; margin: 0; text-align: center; font-size: clamp(1.7rem, 7vw, 2.7rem); line-height: 1; }
 .guest-count span { position: absolute; overflow: hidden; clip: rect(0 0 0 0); width: 1px; height: 1px; white-space: nowrap; }
 .guest-count strong { font-weight: 400; }
-.countdown-values { position: absolute; z-index: 2; top: 45.55%; left: 5.25%; width: 89.5%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.2%; }
-.countdown-values strong { display: grid; place-items: center; aspect-ratio: 1; color: var(--ink); font-size: clamp(2rem, 11vw, 4.2rem); line-height: 1; font-weight: 400; }
+.countdown-values { position: absolute; z-index: 2; top: 45.55%; left: 5.25%; width: 89.5%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3.2%; perspective: 700px; }
+.countdown-values strong { display: grid; place-items: center; aspect-ratio: 1; color: var(--ink); font-size: clamp(2rem, 11vw, 4.2rem); line-height: 1; font-weight: 400; transform-origin: 50% 70%; backface-visibility: hidden; animation: countdown-enter 1.05s cubic-bezier(.16,.82,.24,1) both paused; }
+.countdown-values strong:nth-child(2) { animation-delay: .18s; }
+.countdown-values strong:nth-child(3) { animation-delay: .36s; }
+.countdown-values strong:nth-child(4) { animation-delay: .54s; }
+.countdown-art.is-active .countdown-values strong { animation-play-state: running; }
+.countdown-values strong.is-ticking { animation: countdown-tick .68s cubic-bezier(.2,.72,.25,1); }
+.countdown-art { overflow: hidden; }
+.countdown-art::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 4% 2% 9%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 17%, rgba(183,142,84,.62) 0 1.2px, transparent 2.8px),
+    radial-gradient(circle at 76% 13%, rgba(196,156,99,.52) 0 1px, transparent 2.5px),
+    radial-gradient(circle at 88% 34%, rgba(177,132,75,.48) 0 1.3px, transparent 3px),
+    radial-gradient(circle at 10% 41%, rgba(203,166,111,.45) 0 1px, transparent 2.7px),
+    radial-gradient(circle at 66% 36%, rgba(187,145,88,.42) 0 1px, transparent 2.4px),
+    radial-gradient(circle at 31% 72%, rgba(195,153,93,.45) 0 1.1px, transparent 2.8px),
+    radial-gradient(circle at 82% 76%, rgba(179,137,81,.5) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 49% 87%, rgba(209,173,116,.38) 0 1px, transparent 2.5px);
+  filter: drop-shadow(0 0 4px rgba(195,151,91,.32));
+  opacity: .72;
+  animation: countdown-particles 5s ease-in-out infinite alternate paused;
+}
+.countdown-art.is-active::before { animation-play-state: running; }
+.countdown-art::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: 44.5%;
+  left: -32%;
+  width: 20%;
+  height: 14%;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 0, rgba(255,255,255,.12) 25%, rgba(255,249,230,.82) 50%, rgba(255,255,255,.12) 75%, transparent 100%);
+  filter: blur(5px);
+  transform: skewX(-15deg);
+  opacity: 0;
+  animation: countdown-shimmer 4.6s ease-in-out 1.5s infinite paused;
+}
+.countdown-art.is-active::after { animation-play-state: running; }
 
 .date-hotspot { left: 22%; top: 80.1%; width: 56%; height: 6.7%; }
 .location-hotspot { left: 22%; top: 83.2%; width: 56%; height: 6.4%; }
 .gift-hotspot { left: 37%; top: 49.3%; width: 57.5%; height: 7%; }
-.music-hotspot { left: 12%; top: 35.6%; width: 49.5%; height: 6.8%; }
+.music-hotspot {
+  left: 12%;
+  top: 35.6%;
+  width: 49.5%;
+  height: 6.8%;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  color: #6f5945;
+  font: 500 clamp(.68rem, 3.2vw, 1rem)/1 Montserrat, Arial, sans-serif;
+  letter-spacing: .18em;
+  text-decoration: none;
+}
+.music-hotspot::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 19% 8%;
+  border-radius: 999px;
+  background: #eee6db url("assets/paper-texture.png") center / 420px auto;
+}
+.music-hotspot span { transform: translateY(1px); }
 .music-art { overflow: hidden; }
 .music-background { width: 100%; height: auto; }
 .music-vinyl-position {
@@ -173,20 +236,45 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
   border-radius: clamp(18px, 5vw, 30px);
 }
 .closing-message__lead {
-  width: 88%;
+  width: 92%;
   margin: 0 auto;
   text-align: center;
-  font-size: clamp(2.25rem, 10.5vw, 3.7rem);
-  line-height: 1.05;
+  font-size: clamp(1.9rem, 8.3vw, 3rem);
+  line-height: 1.1;
 }
 .closing-message {
   padding: 0 clamp(30px, 8vw, 52px) clamp(64px, 15vw, 94px);
   text-align: center;
 }
+.closing-message__ornament {
+  position: relative;
+  width: 76px;
+  height: 1px;
+  margin: clamp(24px, 6vw, 36px) auto;
+  display: block;
+  background: linear-gradient(90deg, transparent, rgba(163,125,80,.85) 18%, rgba(163,125,80,.85) 82%, transparent);
+}
+.closing-message__ornament::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border: 1px solid rgba(163,125,80,.85);
+  background: #f1e9df;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.closing-message > p:not(.closing-message__lead):not(.closing-message__final) {
+  max-width: 430px;
+  margin: 0 auto;
+  font-size: clamp(1.08rem, 4.6vw, 1.42rem);
+  line-height: 1.5;
+}
 .closing-message__final {
-  width: 96%;
-  margin: clamp(30px, 8vw, 48px) auto 0;
-  font-size: clamp(1.72rem, 6.8vw, 2.6rem);
+  width: 94%;
+  margin: clamp(34px, 8vw, 48px) auto 0;
+  font-size: clamp(1.62rem, 6.35vw, 2.4rem);
   font-weight: 400;
   font-style: italic;
   line-height: 1.12;
@@ -250,6 +338,26 @@ body.intro-open .invitation { opacity: 0; transform: translateY(18px) scale(.992
 @keyframes vinyl-spin {
   from { transform: rotate(20deg); }
   to { transform: rotate(380deg); }
+}
+@keyframes countdown-enter {
+  0% { opacity: 0; transform: translateY(30px) rotateX(-72deg) scale(.76); filter: blur(5px); }
+  64% { opacity: 1; transform: translateY(-4px) rotateX(7deg) scale(1.04); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0) scale(1); filter: blur(0); }
+}
+@keyframes countdown-tick {
+  0% { opacity: .2; transform: translateY(-12px) rotateX(55deg) scale(.88); }
+  58% { opacity: 1; transform: translateY(3px) rotateX(-8deg) scale(1.06); }
+  100% { transform: translateY(0) rotateX(0) scale(1); }
+}
+@keyframes countdown-particles {
+  from { transform: translate3d(-3px, 7px, 0) scale(.97); opacity: .55; }
+  to { transform: translate3d(4px, -9px, 0) scale(1.035); opacity: .82; }
+}
+@keyframes countdown-shimmer {
+  0%, 18% { left: -32%; opacity: 0; }
+  28% { opacity: .8; }
+  60% { opacity: .55; }
+  72%, 100% { left: 112%; opacity: 0; }
 }
 
 .modal[hidden] { display: none; }

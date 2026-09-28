@@ -6,6 +6,7 @@
   let activeModal = null;
   let lastFocused = null;
   let lockedScrollY = 0;
+  let countdownReady = false;
 
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
@@ -29,11 +30,32 @@
     };
     Object.entries(values).forEach(([id, value]) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = id === "days" ? String(value) : String(value).padStart(2, "0");
+      if (!el) return;
+      const nextValue = id === "days" ? String(value) : String(value).padStart(2, "0");
+      if (el.textContent === nextValue) return;
+      el.textContent = nextValue;
+      if (countdownReady && el.closest(".countdown-art")?.classList.contains("is-active")) {
+        el.classList.remove("is-ticking");
+        void el.offsetWidth;
+        el.classList.add("is-ticking");
+      }
     });
+    countdownReady = true;
   }
   updateCountdown();
   window.setInterval(updateCountdown, 1000);
+
+  const countdownArt = document.querySelector(".countdown-art");
+  if (countdownArt && "IntersectionObserver" in window && !reducedMotion) {
+    const countdownObserver = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      countdownArt.classList.add("is-active");
+      countdownObserver.disconnect();
+    }, { threshold: 0.52 });
+    countdownObserver.observe(countdownArt);
+  } else if (countdownArt) {
+    countdownArt.classList.add("is-active");
+  }
 
   const revealObserver = "IntersectionObserver" in window && !reducedMotion
     ? new IntersectionObserver((entries) => {
@@ -202,7 +224,6 @@
   });
 
   const audio = document.getElementById("weddingAudio");
-  const musicButton = document.getElementById("musicButton");
   const audioToggle = document.getElementById("audioToggle");
   const musicStatus = document.getElementById("musicStatus");
   const invitationIntro = document.getElementById("invitationIntro");
@@ -210,10 +231,8 @@
   const enterWithoutMusic = document.getElementById("enterWithoutMusic");
 
   function setMusicState(isPlaying) {
-    musicButton.setAttribute("aria-pressed", String(isPlaying));
     audioToggle.setAttribute("aria-pressed", String(isPlaying));
     audioToggle.setAttribute("aria-label", isPlaying ? "Apagar música" : "Encender música");
-    musicButton.setAttribute("aria-label", isPlaying ? "Pausar nuestra canción" : "Reproducir nuestra canción");
   }
 
   async function toggleMusic() {
@@ -255,7 +274,6 @@
 
   enterWithMusic.addEventListener("click", () => enterInvitation(true));
   enterWithoutMusic.addEventListener("click", () => enterInvitation(false));
-  musicButton.addEventListener("click", toggleMusic);
   audioToggle.addEventListener("click", toggleMusic);
   audio.addEventListener("play", () => setMusicState(true));
   audio.addEventListener("pause", () => setMusicState(false));

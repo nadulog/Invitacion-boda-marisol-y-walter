@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=intro-20260927-3">
+  <link rel="stylesheet" href="styles.css?v=countdown-visible-20260927-1">
 </head>
 <body class="intro-open">
   <div class="invitation-intro" id="invitationIntro" role="dialog" aria-modal="true" aria-label="Elegir cómo ingresar a la invitación">
@@ -84,13 +84,13 @@
     </section>
 
     <section class="art-section music-art" aria-label="Música">
-      <img class="music-background" src="assets/01-fondo-tocadiscos.png?v=musica-20260927-15" alt="Dale play a nuestra historia en un tocadiscos clásico">
+      <img class="music-background" src="assets/01-fondo-tocadiscos.png?v=musica-20260927-15" alt="Agregá música a nuestra historia en Spotify">
       <div class="music-vinyl-position" aria-hidden="true">
         <img class="music-vinyl" src="assets/02-vinilo-WM-transparente-centrado.png?v=musica-20260927-15" alt="">
       </div>
       <img class="music-spindle" src="assets/music-spindle.png?v=musica-20260927-15" alt="" aria-hidden="true">
       <img class="music-tonearm" src="assets/03-brazo-aguja-transparente.png?v=musica-20260927-15" alt="" aria-hidden="true">
-      <button class="hotspot music-hotspot" id="musicButton" type="button" aria-pressed="false" aria-label="Reproducir nuestra canción"></button>
+      <a class="hotspot music-hotspot" href="https://open.spotify.com/playlist/7KxykG1PQkSFspqsW8S9hx?si=rocksVyGRAWqltRNVnkX2g&amp;utm_source=whatsapp&amp;pt=e6e59cd6ef811b7cc5fb4a0fb5ac6068&amp;pi=zQYxlRgPQ0qKl" target="_blank" rel="noopener" aria-label="Agregar música a la playlist de Walter y Marisol en Spotify"><span>AGREGAR MÚSICA</span></a>
       <p id="musicStatus" class="sr-status" aria-live="polite"></p>
       <audio id="weddingAudio" preload="metadata" loop><source src="assets/nuestra-cancion.mp3" type="audio/mpeg"></audio>
     </section>
@@ -175,7 +175,7 @@
     <span class="audio-toggle__note" aria-hidden="true">♫</span>
     <span class="audio-toggle__ring" aria-hidden="true"></span>
   </button>
-  <script src="script.js?v=intro-20260927-3"></script>
+  <script src="script.js?v=countdown-visible-20260927-1"></script>
   <script src="assets/invitation-personalization.js"></script>
 </body>
 </html>
